@@ -1,0 +1,29 @@
+services:
+  test-cam:
+    image: test-cam
+    build:
+      context: .
+      dockerfile: Dockerfile-cam
+    privileged: true
+    restart: always
+    devices:
+      - /dev:/dev
+    volumes:
+      - .:/app
+    environment:
+      #CHANGE THIS TO THE CORRECT EVENT
+      - CAM_PATH=/dev/video0
+  test-qr:
+    image: test-qr
+    build:
+      context: .
+      dockerfile: Dockerfile-qr
+    privileged: true
+    restart: always
+    devices:
+      - /dev:/dev
+    volumes:
+      - .:/app
+    environment:
+      #CHANGE THIS TO THE CORRECT EVENT
+      - QR_PATH=/dev/input/event0
